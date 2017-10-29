@@ -1,4 +1,6 @@
 # crazy_cube_solve
+This is code of TelegramBot  @cube_solve_bot
+Unfortunately without webhooks :((((
 I used kociemba
 https://github.com/muodov/kociemba
 
