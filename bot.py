@@ -7,7 +7,7 @@ bot = telebot.TeleBot(token)
 
 markup = telebot.types.ReplyKeyboardMarkup(True, False)
 
-markup.row('/help', '/example')
+markup.row('/help', '/example_of_message')
 markup.row('/#solve', '/#color-solve')
 markup.row('/#text-solve', '/#text-color-solve')
 
@@ -16,14 +16,10 @@ markup.row('/#text-solve', '/#text-color-solve')
 def handle_start_help(message):
     start = """
 https://github.com/dposokhov/crazy_cube_solve
-
-
 /solve:
 На вход бот получает строку из 54 символов.
 Если бы кубик рубика был собран, то строка выглядела бы так
 UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB
-
-
 /color_solve
 На вход бот получает строку из 54 символов.                
 Кубик расположить White == Up, Blue == Front, Red == Left             
@@ -36,11 +32,16 @@ THE=====END
 
 @bot.message_handler(commands=['#solve', '#color-solve', '#text-solve', '#text-color-solve'])
 def print_text(message):
-    bot.send_message(message.chat.id, 'Эта кнопка предназначена для ознакомления с функцией. После неё нужно '
-                                      'написать конфигурацию кубика(54 символа)')
+    text_example = """
+/solve {U, R, F, D, L, B} -> output text and photos
+/text-solve {U, R, F, D, L, B} -> output text
+/color-solve {W, B, R, O, G, Y} -> output text and photos      
+/text-color-solve {W, B, R, O, G, Y} -> output text    
+        """
+    bot.send_message(message.chat.id, text_example)
 
 
-@bot.message_handler(commands=['example'])
+@bot.message_handler(commands=['example_of_message'])
 def print_example(message):
     example = 'UFRDUFBRFDDULRBFLBDBLDFBLFDUURFDURUDLBRRLLBRFFLBUBDLRU'
     if 'U' and 'R' and 'F' and 'D' and 'L' and 'B' in list(example) and len(example) == 54:
@@ -50,8 +51,6 @@ def print_example(message):
         for item in out.split():
             f = open('./kubik/{}.jpg'.format(item), 'rb')
             bot.send_photo(message.chat.id, f)
-    else:
-        bot.send_message(message.chat.id, 'Введены неверные входные данные')
 
 
 @bot.message_handler(commands=['solve'])
