@@ -3,6 +3,7 @@ This is code of TelegramBot
 @cube_solve_bot 
 
 
+Works with https://aws.amazon.com/ru/
 Unfortunately without webhooks :((((
 I used kociemba
 https://github.com/muodov/kociemba
