@@ -51,6 +51,7 @@ def print_example(message):
         for item in out.split():
             f = open('./kubik/{}.jpg'.format(item), 'rb')
             bot.send_photo(message.chat.id, f)
+        bot.send_message(message.chat.id, str(len(out.split()))+' steps')
 
 
 @bot.message_handler(commands=['solve'])
@@ -62,7 +63,7 @@ def solve(message):
         for item in out.split():
             f = open('./kubik/{}.jpg'.format(item), 'rb')
             bot.send_photo(message.chat.id, f)
-        bot.send_message(message.chat.id, str(len(out.split()))+' хода')
+        bot.send_message(message.chat.id, str(len(out.split()))+' steps')
     else:
         if len(data) > 54:
             bot.send_message(message.chat.id, 'Введены неверные входные данные: Строка содержит > 54 символов',
@@ -81,7 +82,7 @@ def solve(message):
     if 'U' and 'R' and 'F' and 'D' and 'L' and 'B' in list(data) and len(data) == 54:
         out = kociemba.solve(data)
         bot.send_message(message.chat.id, out, reply_markup=markup)
-        bot.send_message(message.chat.id, str(len(out.split()))+' хода')
+        bot.send_message(message.chat.id, str(len(out.split()))+' steps')
     else:
         if len(data) > 54:
             bot.send_message(message.chat.id, 'Введены неверные входные данные: Строка содержит > 54 символов',
@@ -105,7 +106,7 @@ def solve(message):
         for item in out.split():
             f = open('./kubik/{}.jpg'.format(item), 'rb')
             bot.send_photo(message.chat.id, f)
-        bot.send_message(message.chat.id, str(len(out.split()))+' хода')
+        bot.send_message(message.chat.id, str(len(out.split()))+' steps')
     else:
         if len(data) > 54:
             bot.send_message(message.chat.id, 'Введены неверные входные данные: Строка содержит > 54 символов',
@@ -126,7 +127,7 @@ def solve(message):
     if 'U' and 'R' and 'F' and 'D' and 'L' and 'B' in list(data) and len(data) == 54:
         out = kociemba.solve(data)
         bot.send_message(message.chat.id, out, reply_markup=markup)
-        bot.send_message(message.chat.id, str(len(out.split()))+' хода')
+        bot.send_message(message.chat.id, str(len(out.split()))+' steps')
     else:
         if len(data) > 54:
             bot.send_message(message.chat.id, 'Введены неверные входные данные: Строка содержит > 54 символов',
