@@ -20,7 +20,7 @@ https://github.com/dposokhov/crazy_cube_solve
 На вход бот получает строку из 54 символов.
 Если бы кубик рубика был собран, то строка выглядела бы так
 UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB
-/color_solve
+/color-solve
 На вход бот получает строку из 54 символов.                
 Кубик расположить White == Up, Blue == Front, Red == Left             
 White, Orange, Blue, Yellow, Red, Green.                   
@@ -62,6 +62,7 @@ def solve(message):
         for item in out.split():
             f = open('./kubik/{}.jpg'.format(item), 'rb')
             bot.send_photo(message.chat.id, f)
+        bot.send_message(message.chat.id, str(len(out.split()))+' хода')
     else:
         if len(data) > 54:
             bot.send_message(message.chat.id, 'Введены неверные входные данные: Строка содержит > 54 символов',
@@ -80,6 +81,7 @@ def solve(message):
     if 'U' and 'R' and 'F' and 'D' and 'L' and 'B' in list(data) and len(data) == 54:
         out = kociemba.solve(data)
         bot.send_message(message.chat.id, out, reply_markup=markup)
+        bot.send_message(message.chat.id, str(len(out.split()))+' хода')
     else:
         if len(data) > 54:
             bot.send_message(message.chat.id, 'Введены неверные входные данные: Строка содержит > 54 символов',
@@ -103,6 +105,7 @@ def solve(message):
         for item in out.split():
             f = open('./kubik/{}.jpg'.format(item), 'rb')
             bot.send_photo(message.chat.id, f)
+        bot.send_message(message.chat.id, str(len(out.split()))+' хода')
     else:
         if len(data) > 54:
             bot.send_message(message.chat.id, 'Введены неверные входные данные: Строка содержит > 54 символов',
@@ -123,6 +126,7 @@ def solve(message):
     if 'U' and 'R' and 'F' and 'D' and 'L' and 'B' in list(data) and len(data) == 54:
         out = kociemba.solve(data)
         bot.send_message(message.chat.id, out, reply_markup=markup)
+        bot.send_message(message.chat.id, str(len(out.split()))+' хода')
     else:
         if len(data) > 54:
             bot.send_message(message.chat.id, 'Введены неверные входные данные: Строка содержит > 54 символов',
