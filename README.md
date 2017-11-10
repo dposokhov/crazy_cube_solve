@@ -3,9 +3,10 @@ This is code of TelegramBot
 @cube_solve_bot 
 
 
-Works with https://aws.amazon.com/ru/
+Works with https://aws.amazon.com/ru/ and https://appmetrica.yandex.com/
+
 Unfortunately without webhooks :((((
-I used kociemba
+I used kociemba and botan.io
 https://github.com/muodov/kociemba
 
 The names of the facelet positions of the cube (letters stand for Up, Left, Front, Right, Back, and Down):
