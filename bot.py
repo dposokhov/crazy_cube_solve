@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import telebot
 import kociemba
+import config
+import botan
 
-token = 'TOKEN'
-bot = telebot.TeleBot(token)
+bot = telebot.TeleBot(config.token)
 
 markup = telebot.types.ReplyKeyboardMarkup(True, False)
 
@@ -16,18 +17,25 @@ markup.row('/#text-solve', '/#text-color-solve')
 def handle_start_help(message):
     start = """
 https://github.com/dposokhov/crazy_cube_solve
+
 /solve:
 На вход бот получает строку из 54 символов.
-Если бы кубик рубика был собран, то строка выглядела бы так
 UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB
+
 /color-solve
 На вход бот получает строку из 54 символов.                
-Кубик расположить White == Up, Blue == Front, Red == Left             
-White, Orange, Blue, Yellow, Red, Green.                   
-WWWWWWWWWOOOOOOOOOBBBBBBBBBYYYYYYYYYRRRRRRRRRGGGGGGGGG     
-THE=====END      
+WWWWWWWWWOOOOOOOOOBBBBBBBBBYYYYYYYYYRRRRRRRRRGGGGGGGGG
+Кубик нужно расположить
+White == Up 
+Blue == Front 
+Red == Left                     
+Нужно построчно ввести все цвета с граней в такой последовательности: 
+Up, Right, Front, Down, Left, Back 
+
+                THE=====END      
                                                                 """
     bot.send_message(message.chat.id, start, reply_markup=markup)
+    botan.track(config.botan_key, message.chat.id, message, 'start')
 
 
 @bot.message_handler(commands=['#solve', '#color-solve', '#text-solve', '#text-color-solve'])
@@ -64,6 +72,7 @@ def solve(message):
             f = open('./kubik/{}.jpg'.format(item), 'rb')
             bot.send_photo(message.chat.id, f)
         bot.send_message(message.chat.id, str(len(out.split()))+' steps')
+        botan.track(config.botan_key, message.chat.id, message, 'solve')
     else:
         if len(data) > 54:
             bot.send_message(message.chat.id, 'Введены неверные входные данные: Строка содержит > 54 символов',
@@ -83,6 +92,7 @@ def solve(message):
         out = kociemba.solve(data)
         bot.send_message(message.chat.id, out, reply_markup=markup)
         bot.send_message(message.chat.id, str(len(out.split()))+' steps')
+        botan.track(config.botan_key, message.chat.id, message, 'solve')
     else:
         if len(data) > 54:
             bot.send_message(message.chat.id, 'Введены неверные входные данные: Строка содержит > 54 символов',
@@ -107,6 +117,7 @@ def solve(message):
             f = open('./kubik/{}.jpg'.format(item), 'rb')
             bot.send_photo(message.chat.id, f)
         bot.send_message(message.chat.id, str(len(out.split()))+' steps')
+        botan.track(config.botan_key, message.chat.id, message, 'color-solve')
     else:
         if len(data) > 54:
             bot.send_message(message.chat.id, 'Введены неверные входные данные: Строка содержит > 54 символов',
@@ -128,6 +139,7 @@ def solve(message):
         out = kociemba.solve(data)
         bot.send_message(message.chat.id, out, reply_markup=markup)
         bot.send_message(message.chat.id, str(len(out.split()))+' steps')
+        botan.track(config.botan_key, message.chat.id, message, 'color-solve')
     else:
         if len(data) > 54:
             bot.send_message(message.chat.id, 'Введены неверные входные данные: Строка содержит > 54 символов',
