@@ -25,10 +25,7 @@ UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB
 /color-solve
 На вход бот получает строку из 54 символов.                
 WWWWWWWWWOOOOOOOOOBBBBBBBBBYYYYYYYYYRRRRRRRRRGGGGGGGGG
-Кубик нужно расположить
-White == Up 
-Blue == Front 
-Red == Left                     
+Кубик нужно расположить                    
 Нужно построчно ввести все цвета с граней в такой последовательности: 
 Up, Right, Front, Down, Left, Back 
 
