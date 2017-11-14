@@ -108,7 +108,7 @@ def solve(message):
 @bot.message_handler(commands=['color-solve'])
 def solve(message):
     data = message.text.split()[-1].upper()
-    for old, new in (('W', 'U'), ('B', 'F'), ('R', 'L'), ('O', 'R'), ('G', 'B'), ('Y', 'D')):
+    for old, new in ((data[4], 'U'), (data[22], 'F'), (data[40], 'L'), (data[13], 'R'), (data[49], 'B'), (data[31], 'D')):
         data = data.replace(old, new)
     if 'U' and 'R' and 'F' and 'D' and 'L' and 'B' in list(data) and len(data) == 54:
         out = kociemba.solve(data)
@@ -133,7 +133,7 @@ def solve(message):
 @bot.message_handler(commands=['text-color-solve'])
 def solve(message):
     data = message.text.split()[-1].upper()
-    for old, new in (('W', 'U'), ('B', 'F'), ('R', 'L'), ('O', 'R'), ('G', 'B'), ('Y', 'D')):
+    for old, new in ((data[4], 'U'), (data[22], 'F'), (data[40], 'L'), (data[13], 'R'), (data[49], 'B'), (data[31], 'D')):
         data = data.replace(old, new)
     if 'U' and 'R' and 'F' and 'D' and 'L' and 'B' in list(data) and len(data) == 54:
         out = kociemba.solve(data)
