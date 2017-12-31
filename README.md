@@ -5,7 +5,6 @@ This is code of TelegramBot
 
 Works with https://aws.amazon.com/ru/ and https://appmetrica.yandex.com/
 
-Unfortunately without webhooks :((((
 I used kociemba and botan.io
 https://github.com/muodov/kociemba
 
